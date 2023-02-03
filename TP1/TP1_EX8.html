@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation and variable</title>
+
+    <style>
+        .wrapper {
+            background-color: rgb(186, 186, 186);
+            margin: auto;
+            width: 50%;
+            height: 200px;
+            text-align: center;
+        }
+
+        .drop {
+            position: relative;
+        }
+
+        .drop:nth-child(1) {
+            animation:
+                grow 3s 2s,
+                drop 5s forwards;
+        }
+
+        .drop:nth-child(2) {
+            /* have forward it will stop on the buttom */
+            animation:
+                drop 10s forwards,
+                grow 6s 2s;
+        }
+
+        .drop:nth-child(3) {
+            animation:
+                drop 15s forwards,
+                grow 9s 2s;
+        }
+
+        @keyframes grow {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(2);
+            }
+
+        }
+
+        @keyframes drop {
+            0% {
+                top: -100px;
+            }
+
+            100% {
+                top: 100px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <span class="drop" style="--order: 1"> &#129395;</span>
+        <span class="drop" style="--order: 2">&#128540;</span>
+        <span class="drop" style="--order: 3"> &#129321;</span>
+    </div>
+</body>
+
+</html>

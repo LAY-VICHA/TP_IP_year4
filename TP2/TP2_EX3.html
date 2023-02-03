@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myCanvas {
+            border: 3px solid gray;
+            width: fit-content;
+            height: fit-content;
+            margin-bottom: 0;
+            display: flex;
+           
+        }
+
+        #info-container {
+            background-color: gray;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            width: 286px;
+        }
+
+        .info {
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        #my-file {
+            text-align: center !important;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <div id="info-container">
+        <p class="info">Canvas 👻: Insert me an image please!</p>
+        <div class="input-container">
+            <input type="file" id="my-file" accept="image/*">
+        </div>
+    </div>
+
+    <script>
+        //defining event listener for image upload
+        // we define the input object to a variable (myFile)
+        // and event listener is assigned to it, so when user upload an Image
+        // event listener can detect it and trigger a function inside loop
+        let myFile = document.getElementById('my-file');
+        // if there is a change this function will loop again 
+        myFile.addEventListener('change', function(e) {
+            //load the image and convert into DataURL
+            // read the image path from e.target.files[0] (the file information)
+            // then we define a fileReader and define how to call the image (reader.readAsDataURL(imageFile);)
+            // function myImage.onload is used to ensure that the image is successfully loaded or not
+            if(e.target.files) {
+                let imageFile = e.target.files[0]; //here we get the image file
+                var reader = new FileReader();
+
+                reader.readAsDataURL(imageFile);
+                reader.onloadend = function (e) {
+                    //draw the converted image on canvas
+                    // when convert success, we define image object (myImage)
+                    // then assigns the convert image to it
+                    // toDataURL function to output the canvas as base64 string in jpeg format at quality of 1
+                    var myImage = new Image(); // Creates image object
+                    myImage.src = e.target.result; // Assigns converted image to image object
+
+                    myImage.onload = function(ev) {
+                        var myCanvas = document.getElementById("myCanvas"); // Creates a canvas object
+                        var myContext = myCanvas.getContext("2d"); // Creates a contect object
+                        myCanvas.width = myImage.width; // Assigns image's width to canvas
+                        myCanvas.height = myImage.height; // Assigns image's height to canvas
+
+                        let wit = myImage.width - 15;
+                        document.getElementById("info-container").style.width = wit + "px";
+
+                        myContext.drawImage(myImage,0,0); // Draws the image on canvas
+                        let imgData = myCanvas.toDataURL("image/jpeg",1); // Assigns image base64 string in jpeg format to a variable
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

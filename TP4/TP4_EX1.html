@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab</title>
+
+    <script src="tailwind.js"></script>
+</head>
+
+<body class="w-screen flex justify-center">
+    <div class="w-[600px] h-fit border-4 border-black border-solid bg-slate-200">
+        <h1 class="flex justify-center text-3xl font-semibold mb-[16px] mt-[50px]">About</h1>
+        <p class="flex justify-center text-[13px] mb-[40px] text-cyan-700">Lorem ipsum dolor sit amet consectetur
+            adipisicing elit.Earum, aperiam!</p>
+        <div class="flex justify-center mb-[15px]">
+            <img class="w-11/12 rounded-md" src="landscape-image.jpg">
+        </div>
+        <div class="flex justify-center mb-[50px]">
+            <div class="bg-white w-11/12 m-0 rounded-[10px]" class="btn-container">
+                <div class="flex justify-center rounded-t-[10px] bg-slate-300">
+                    <button class="flex-1 tracking-[2px] py-2 rounded-tl-[10px]" id="history-btn" onclick="displayHistory()">History</button>
+                    <button class="flex-1 tracking-[2px] py-2" id="vision-btn" onclick="displayVision()">Vision</button>
+                    <button class="flex-1 tracking-[2px] py-2 rounded-tr-[10px]" id="goals-btn" onclick="displayGoals()">Goals</button>
+                </div>
+                <div class="mx-[25px] mt-[25px] rounded-t-[10px]" id="info-container" class="bg-white">
+                    <div id="history">
+                        <h5 class="tracking-[2px] font-bold mb-[10px]" class="title">History</h5>
+                        <p class="text-cyan-700 leading-5 text-sm mb-[40px]">
+                            Apple banana Peach Grape Strawberry Blueberry Orange Mango Pineapple Watermelon Melon
+                            Kiwi Cherry Dragonfruit Durian Lychee Jackfruit and more
+                            Apple banana Peach Grape Strawberry Blueberry Orange Mango Pineapple Watermelon Melon
+                            Kiwi Cherry Dragonfruit Durian Lychee Jackfruit and more
+                            Apple banana Peach Grape Strawberry Blueberry Orange Mango Pineapple Watermelon Melon
+                            Kiwi Cherry Dragonfruit Durian Lychee Jackfruit and more
+                        </p>
+                    </div>
+
+                    <div id="vision">
+                        <h5  class="tracking-[2px] font-bold mb-[10px]" class="title">Vision</h5>
+                        <p class="text-cyan-700 leading-5 text-sm mb-[40px]">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                    </div>
+
+                    <div id="goals">
+                        <h5  class="tracking-[2px] font-bold mb-[10px]" class="title">Goals</h5>
+                        <p class="text-cyan-700 leading-5 text-sm mb-[40px]">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        let goals = document.getElementById("goals");
+        let vision = document.getElementById("vision");
+        let history = document.getElementById("history");   
+        let historyBtn = document.getElementById("history-btn");
+        let visionBtn = document.getElementById("vision-btn");
+        let goalsBtn = document.getElementById("goals-btn");
+        
+       
+        historyBtn.style.backgroundColor = 'white';
+        goals.style.display = 'none'; 
+        vision.style.display = 'none';
+
+        function displayHistory() {
+            historyBtn.style.backgroundColor = 'white';
+            visionBtn.style.backgroundColor = 'inherit';
+            goalsBtn.style.backgroundColor = 'inherit';
+            history.style.display = 'inherit';
+            goals.style.display = 'none';
+            vision.style.display = 'none';
+        }
+
+        function displayVision() {
+            historyBtn.style.backgroundColor = 'inherit';
+            visionBtn.style.backgroundColor = 'white';
+            goalsBtn.style.backgroundColor = 'inherit';
+            vision.style.display = 'inherit';
+            goals.style.display = 'none';
+            history.style.display = 'none';
+        }
+
+        function displayGoals() {
+            historyBtn.style.backgroundColor = 'inherit';
+            visionBtn.style.backgroundColor = 'inherit';
+            goalsBtn.style.backgroundColor = 'white';
+            goals.style.display = 'inherit';
+            vision.style.display = 'none';
+            history.style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

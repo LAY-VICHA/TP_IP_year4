@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="opencv.js"></script>
+    <title>Multi projection</title>
+    <style>
+        body{
+            display: flex;
+        }
+
+        #myCanvas {
+            border: 3px solid gray;
+            width: 500px;
+            height: 500px;
+            margin-bottom: 0;
+        }
+
+        #canvas-output {
+            border: 5px solid gray;
+            width: 500px;
+            height: 500px;
+            margin-left: 5px;
+        }
+
+        #info-container {
+            background-color: gray;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            width: 500px;
+        }
+
+        .info {
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- playsinline:  the video will plays right where it is instead of open it up fullscreen
+            hidden: so it not display on screen (video element)
+    -->
+    <video autoplay playsinline webkit-playsinline muted hidden id="videoelement"></video>
+    <div id="info-container">
+        <canvas id="myCanvas"></canvas>
+        <p class="info">Canvas 👻: Please show your face on me</p>
+        <div class="btn-container">
+            <button id="btn" type="button" onclick="pauseVid()">Pause</button>
+        </div>
+    </div>
+
+    <div id="container">
+        <p class="info">Multi Projection with Canvases</p>
+        <canvas id="canvas-output"></canvas>
+    </div>
+
+    <script>
+        var videoelement = document.getElementById("videoelement");
+        let btn = document.getElementById("btn");
+        let count = 0;
+
+        // function pause and play
+        function pauseVid() {
+            count++;
+            if(count%2 != 0) {
+                videoelement.pause();
+            } else {
+                videoelement.play();
+                count = 0;
+            }
+        }
+
+        // function access camera
+        var streamContraints = {
+            audio: false,
+            video: true,
+        };
+
+        var myCanvas = document.querySelector('#myCanvas');
+        var ctx = myCanvas.getContext('2d', { alpha: false });
+        var canvasInterval = null;
+        var fps=30;
+
+        //if stream found 
+        function gotStream(stream) {
+            videoelement.srcObject = stream 
+            videoelement.play()
+        }
+
+        if (videoelement) {
+            navigator.mediaDevices
+            .getUserMedia(streamContraints)
+            .then(gotStream)
+            .catch(function (e) {
+                if (confirm("An error with camera occured:(" + e.name + ") Do you want to reload?")) {
+                    location.reload();
+                }
+            });
+        }
+
+        function drawImage(video) {
+            ctx.drawImage(video, 0, 0, myCanvas.width, myCanvas.height);
+        }
+
+        var canvasProject = document.getElementById('canvas-output');
+        var ctxProject = canvasProject.getContext('2d');
+
+        function gridVideo(video){        
+            ctxProject.drawImage(video, 0, 0, 213, 240, 0, 0, 99, 74);
+            ctxProject.drawImage(video, 213, 0, 213, 240, 100, 0, 99, 74);
+            ctxProject.drawImage(video, 426, 0, 213, 240, 200, 0, 100, 74);
+            ctxProject.drawImage(video, 0, 240, 213, 240, 0, 75, 99, 75);
+            ctxProject.drawImage(video, 213, 240, 213, 240, 100, 75, 99, 75);
+            ctxProject.drawImage(video, 426, 240, 213, 240, 200, 75, 100, 75);
+        }
+
+        //setInterval: offer on the window and worker interface, repeatedly calls a function 
+        //  or execute a code within a fixed time delay between each call.
+        canvasInterval = window.setInterval(() => {
+            drawImage(videoelement);
+        }, 1000 / fps);
+
+        canvasInt = window.setInterval(() => {
+            gridVideo(videoelement);
+        }, 1000 / fps);
+
+    </script>
+</body>
+</html>

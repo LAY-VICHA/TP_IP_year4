@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clamp</title> 
+    <!--responsive type
+        take 3 value
+        minimum size, preferred value(if the size is between min and max), maximum size 
+    -->
+
+    <style>
+        .wrapper {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .content {
+            height: 100%;
+            background-color: yellowgreen;
+            width: clamp(300px, 100%, 800px);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <script src="tailwind.js"></script>
+</head>
+<body class="w-screen">
+    <div class="w-[400px] h-[500px] border-4 border-black border-solid flex justify-center items-center flex-col bg-slate-200">
+        <p class="text-[40px] text-cyan-700 font-bold">Counter</p>
+        <p class="text-[60px] font-bold mb-[20px] mt-[20px]" id="number">0</p>
+        <div class="flex gap-3">
+            <button class="border border-solid border-black rounded-sm px-[12px] py-[2px]" id="decrease">DECREASE</button>
+            <button class="border border-solid border-black rounded-sm px-[12px] py-[2px]" id="reset">RESET</button>
+            <button class="border border-solid border-black rounded-sm px-[12px] py-[2px]" id="increase">INCREASE</button>
+        </div>
+    </div>
+
+    <script>
+        let decreaseBtn = document.getElementById("decrease");
+        let resetBtn = document.getElementById("reset");
+        let increaseBtn = document.getElementById("increase");
+        let number = document.getElementById("number");
+        number.innerHTML = getNumber();
+        color(getNumber());
+        let sum = getNumber();
+
+        decreaseBtn.addEventListener("click", ()=> {
+            decreaseBtn.style.backgroundColor = 'black';
+            resetBtn.style.backgroundColor = 'inherit';
+            increaseBtn.style.backgroundColor = 'inherit';
+
+            decreaseBtn.style.color = 'white';
+            resetBtn.style.color = 'inherit';
+            increaseBtn.style.color = 'inherit';
+
+            const d = new Date();
+            let id = d.getTime();
+            sum--;
+            color(sum);
+            localStorage.setItem(id, sum);
+            number.innerHTML = sum
+        })
+
+        resetBtn.addEventListener("click", ()=> {
+            decreaseBtn.style.backgroundColor = 'inherit';
+            resetBtn.style.backgroundColor = 'black';
+            increaseBtn.style.backgroundColor = 'inherit';
+
+            decreaseBtn.style.color = 'inherit';
+            resetBtn.style.color = 'white';
+            increaseBtn.style.color = 'inherit';
+
+            localStorage.clear();
+            sum = 0;
+            color(sum);
+            number.innerHTML = sum
+        })
+
+        increaseBtn.addEventListener("click", ()=> {
+            decreaseBtn.style.backgroundColor = 'inherit';
+            resetBtn.style.backgroundColor = 'inherit';
+            increaseBtn.style.backgroundColor = 'black';
+
+            decreaseBtn.style.color = 'inherit';
+            resetBtn.style.color = 'inherit';
+            increaseBtn.style.color = 'white';
+
+            const d = new Date();
+            let id = d.getTime();
+            sum++;
+            color(sum);
+            localStorage.setItem(id, sum);
+            number.innerHTML = sum
+        })
+
+        function getNumber() {
+            let n; 
+            if (localStorage.length > 0) {
+                let max = localStorage.key(0);
+                for(let i=0; i<localStorage.length; i++) {
+                    if(max < localStorage.key(i)) {
+                        max = localStorage.key(i);
+                    }
+                }
+                n = localStorage.getItem(max);
+            } else {
+                n = 0;
+            }
+
+            return n;
+        }
+
+        function color(num) {
+            if(num >= 0) {
+                number.style.color = 'green';
+            } else if(num < 0) {
+                number.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

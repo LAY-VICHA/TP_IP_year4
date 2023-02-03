@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>media only screen</title>
+
+    <style>
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .big {
+            background-color: rgb(143, 237, 2);
+            color: white;
+            font-size: 30px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .small {
+            background-color: rgb(248, 90, 32);
+            color: white;
+            padding: 8px;
+            border-radius: 2px;
+        }
+
+        @media only screen and (min-width: 351px) {
+            .small {
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width: 350px) {
+            .big {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <span class="small">I'm SMALL 😥</span>
+            <span class="big">I'm BIG 😱</span>
+        </div>
+    </div>
+</body>
+
+</html>

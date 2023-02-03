@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorllable 12</title>
+
+    <style>
+        .container {
+            border: 3px solid black;
+            width: 600px;
+            height: 400px;
+            position: relative;
+        }
+
+        .i,
+        .t,
+        .c {
+            position: absolute;
+        }
+
+        .i,
+        .tVertical,
+        .cVertical {
+            height: 300px;
+            width: 50px;
+        }
+
+        .i {
+            background-color: palevioletred;
+            top: 50px;
+            left: 50px;
+        }
+
+        .t {
+            background-color: palegreen;
+        }
+
+        .horizontal {
+            height: 50px;
+            width: 200px;
+            top: 50px;
+            left: 150px;
+        }
+
+        .tVertical {
+            top: 50px;
+            left: 225px;
+        }
+
+        .c {
+            background-color: palegoldenrod;
+        }
+
+        .horizontal-one,
+        .horizontal-two {
+            height: 50px;
+            width: 150px;
+            left: 400px;
+        }
+
+        .horizontal-one {
+            top: 50px;
+        }
+
+        .horizontal-two {
+            top: 300px;
+        }
+
+        .cVertical {
+            top: 50px;
+            left: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <div class="i"></div>
+            <div class="t horizontal"></div>
+            <div class="t tVertical"></div>
+            <div class="c horizontal-one"></div>
+            <div class="c cVertical"></div>
+            <div class="c horizontal-two"></div>
+        </div>
+    </div>
+</body>
+
+</html>

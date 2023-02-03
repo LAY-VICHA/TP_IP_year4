@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scrollable 11</title>
+
+    <style>
+        body {
+            margin-top: 85px;
+        }
+
+        .header {
+            background-color: palevioletred;
+            color: white;
+            height: 60px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 15px;
+            left: 10px;
+            right: 10px;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: repeat(8, 1fr);
+            height: 450px;
+            row-gap: 10px;
+            column-gap: 15px;
+            overflow-x: scroll;
+            padding-bottom: 20px;
+        }
+
+        .grid::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .grid::-webkit-scrollbar-thumb {
+            background-color: grey;
+            border-radius: 10px;
+        }
+
+        .box {
+            background-color: greenyellow;
+            width: 230px;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        Scroll Vertically
+    </header>
+    <div class="grid">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+       
+       
+    </div>
+</body>
+</html>

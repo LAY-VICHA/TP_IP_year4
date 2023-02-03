@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myCanvas {
+            border: 3px solid gray;
+            width: 800px;
+            height: 500px;
+            /* object-fit: cover; */
+            margin-bottom: 0;
+            display: flex;
+           
+        }
+
+        #info-container {
+            background-color: gray;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            width: 785px;
+        }
+
+        .info {
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- playsinline:  the video will plays right where it is instead of open it up fullscreen
+            hidden: so it not display on screen (video element)
+    -->
+    <video autoplay playsinline webkit-playsinline muted hidden id="videoelement"></video>
+    <canvas id="myCanvas"></canvas>
+    <div id="info-container">
+        <p class="info">Canvas 👻: Please show your face on me</p>
+        <div class="btn-container">
+            <button id="btn" type="button" onclick="pauseVid()">Pause</button>
+        </div>
+    </div>
+
+
+    <script>
+        var videoelement = document.getElementById("videoelement");
+        let btn = document.getElementById("btn");
+        let count = 0;
+
+        // function pause and play
+        function pauseVid() {
+            count++;
+            if(count%2 != 0) {
+                videoelement.pause();
+            } else {
+                videoelement.play();
+                count = 0;
+            }
+        }
+
+        // function access camera
+        var streamContraints = {
+            audio: false,
+            video: true,
+        };
+
+        var myCanvas = document.querySelector('#myCanvas');
+        var ctx = myCanvas.getContext('2d', { alpha: false });
+        var canvasInterval = null;
+        var fps=30;
+
+        //if stream found 
+        function gotStream(stream) {
+            videoelement.srcObject = stream 
+            videoelement.play()
+        }
+
+        if (videoelement) {
+            navigator.mediaDevices
+            .getUserMedia(streamContraints)
+            .then(gotStream)
+            .catch(function (e) {
+                if (confirm("An error with camera occured:(" + e.name + ") Do you want to reload?")) {
+                    location.reload();
+                }
+            });
+        }
+
+        function drawImage(video) {
+            ctx.drawImage(video, 0, 0, myCanvas.width, myCanvas.height);
+        }
+
+        //setInterval: offer on the window and worker interface, repeatedly calls a function 
+        //  or execute a code within a fixed time delay between each call.
+        canvasInterval = window.setInterval(() => {
+            drawImage(videoelement);
+        }, 1000 / fps);
+    </script>
+
+</body>
+</html>
